@@ -1,14 +1,13 @@
 function printInventory(inputs) {
 
-    var barcodeScanner = new BarcodeScanner();
+    var allItems = loadAllItems(),
+        barcodeHandler = new BarcodeHandler(allItems),
+        cart = new Cart();
 
-    var barcodes = [];
-    for (var i = 0; i < inputs.length; i ++) {
-        barcodes = barcodes.concat(barcodeScanner.scan(inputs[i]));
+    for (var i = 0; i < inputs.length; i++) {
+        var cartItem = barcodeHandler.read(inputs[i]);
+        cart.add(cartItem.item, cartItem.quantity);
     }
-
-    var cart = new Cart();
-    cart.addByBarcodes(barcodes);
 
     var pos = new Pos(cart, new PromotionCalculator());
     pos.printInventory(inputs);

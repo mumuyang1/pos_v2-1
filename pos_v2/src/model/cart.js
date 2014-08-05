@@ -2,44 +2,16 @@ function Cart() {
     this.cartItems = [];
 }
 
-Cart.prototype.add = function (item) {
+Cart.prototype.add = function (item, quantity) {
 
     var existCartItem = this.get(item.barcode);
 
     if (existCartItem) {
-        existCartItem.quantity++;
+        existCartItem.quantity += quantity;
     } else {
-        this.cartItems.push(new CartItem(item, 1));
+        this.cartItems.push(new CartItem(item, quantity));
     }
 };
-
-Cart.prototype.addByBarcode = function (barcode) {
-
-    var getItem = function (barcode, allItems) {
-
-        var item;
-
-        for (var i = 0; i < allItems.length; i++) {
-            if (allItems[i].barcode === barcode) {
-                item = allItems[i];
-                break;
-            }
-        }
-
-        return item;
-    };
-
-    var allItems = loadAllItems();
-
-    this.add(getItem(barcode, allItems));
-};
-
-Cart.prototype.addByBarcodes = function (barcodes) {
-
-    for (var i = 0; i < barcodes.length; i++) {
-        this.addByBarcode(barcodes[i]);
-    }
-}
 
 Cart.prototype.get = function (barcode) {
 

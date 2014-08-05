@@ -47,7 +47,7 @@ Cart.prototype.get = function (barcode) {
     var cartItem;
 
     for (var i = 0; i < this.cartItems.length; i++) {
-        if (this.cartItems[i].item.barcode === barcode) {
+        if (this.cartItems[i].getBarcode() === barcode) {
             cartItem = this.cartItems[i];
             break;
         }

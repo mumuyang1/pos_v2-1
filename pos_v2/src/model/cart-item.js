@@ -5,6 +5,10 @@ function CartItem(item, quantity) {
     this.promotionQuantity = 0;
 }
 
+CartItem.prototype.getBarcode = function () {
+    return this.item.barcode;
+}
+
 CartItem.prototype.getSubtotal = function () {
     return this.item.price * this.quantity;
 };

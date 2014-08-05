@@ -1,6 +1,5 @@
 function Cart() {
     this.cartItems = [];
-
 }
 
 Cart.prototype.add = function (item) {

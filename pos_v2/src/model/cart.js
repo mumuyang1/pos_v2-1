@@ -26,9 +26,3 @@ Cart.prototype.get = function (barcode) {
 
     return cartItem;
 };
-
-Cart.prototype.calculatePromotions = function (promotionCalculator) {
-    for (var i = 0; i < this.cartItems.length; i++) {
-        promotionCalculator.calculate(this.cartItems[i]);
-    }
-};

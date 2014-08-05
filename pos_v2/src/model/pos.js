@@ -5,14 +5,13 @@ function Pos(cart, promotionCalculator) {
 
 Pos.prototype.printInventory = function () {
 
-    var formatPrice = Utils.formatter.formatPrice;
-
-    this.cart.calculatePromotions(this.promotionCalculator);
-
     var itemsText = '',
         promotionItemsText = '',
         totalPrice = 0,
-        promotionTotalPrice = 0;
+        promotionTotalPrice = 0,
+        formatPrice = Utils.formatter.formatPrice;
+
+    this.promotionCalculator.calculate(this.cart.cartItems);
 
     for (var i = 0; i < this.cart.cartItems.length; i++) {
 

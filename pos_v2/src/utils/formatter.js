@@ -11,10 +11,9 @@ Utils.formatter = {
             date = this.dateDigitToString(inputDate.getDate()),
             hour = this.dateDigitToString(inputDate.getHours()),
             minute = this.dateDigitToString(inputDate.getMinutes()),
-            second = this.dateDigitToString(inputDate.getSeconds()),
-            formattedDateString = year + '年' + month + '月' + date + '日 ' + hour + ':' + minute + ':' + second;
+            second = this.dateDigitToString(inputDate.getSeconds());
 
-        return formattedDateString;
+        return year + '年' + month + '月' + date + '日 ' + hour + ':' + minute + ':' + second;
     },
     dateDigitToString: function (num) {
         return num < 10 ? '0' + num : num;

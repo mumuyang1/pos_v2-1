@@ -19,10 +19,9 @@ BarcodeHandler.prototype.read = function (barcodeText) {
     };
 
     var barcodeArray = barcodeText.split('-');
-    var barcode = barcodeArray[0];
-    var quantity = barcodeArray[1] || 1;
+    var item = getItem(barcodeArray[0], this.allItems);
+    var quantity = parseFloat(barcodeArray[1]) || 1;
 
-    var item = getItem(barcode, this.allItems);
 
     return new CartItem(item, quantity);
 };

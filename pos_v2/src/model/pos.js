@@ -1,44 +1,13 @@
-function Pos(cart, scanner, promotionCalculator) {
+function Pos(cart, promotionCalculator) {
     this.cart = cart;
-    this.scanner = scanner;
     this.promotionCalculator = promotionCalculator;
 }
 
-Pos.prototype.printInventory = function (inputs) {
-
-    var getItem = function (barcode, allItems) {
-
-        var item;
-
-        for (var i = 0; i < allItems.length; i++) {
-            if (allItems[i].barcode === barcode) {
-                item = allItems[i];
-                break;
-            }
-        }
-
-        return item;
-    };
-
-    var handleInputs = function (pos, inputs) {
-
-        var allItems = loadAllItems();
-
-        for (var i = 0; i < inputs.length; i++) {
-
-            var barcodes = pos.scanner.scan(inputs[i]);
-
-            for (var x = 0; x < barcodes.length; x++) {
-                pos.cart.add(getItem(barcodes[x], allItems));
-            }
-        }
-
-        pos.cart.calculatePromotions(pos.promotionCalculator);
-    };
+Pos.prototype.printInventory = function () {
 
     var formatPrice = Utils.formatter.formatPrice;
 
-    handleInputs(this, inputs);
+    this.cart.calculatePromotions(this.promotionCalculator);
 
     var itemsText = '',
         promotionItemsText = '',

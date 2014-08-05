@@ -14,11 +14,33 @@ Cart.prototype.add = function (item) {
     }
 };
 
-Cart.prototype.addByArray = function (items) {
-    for (var i = 0; i < items.length; i++) {
-        this.add(items[i]);
-    }
+Cart.prototype.addByBarcode = function (barcode) {
+
+    var getItem = function (barcode, allItems) {
+
+        var item;
+
+        for (var i = 0; i < allItems.length; i++) {
+            if (allItems[i].barcode === barcode) {
+                item = allItems[i];
+                break;
+            }
+        }
+
+        return item;
+    };
+
+    var allItems = loadAllItems();
+
+    this.add(getItem(barcode, allItems));
 };
+
+Cart.prototype.addByBarcodes = function (barcodes) {
+
+    for (var i = 0; i < barcodes.length; i++) {
+        this.addByBarcode(barcodes[i]);
+    }
+}
 
 Cart.prototype.get = function (barcode) {
 

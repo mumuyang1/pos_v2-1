@@ -22,6 +22,5 @@ BarcodeHandler.prototype.read = function (barcodeText) {
     var item = getItem(barcodeArray[0], this.allItems);
     var quantity = parseFloat(barcodeArray[1]) || 1;
 
-
     return new CartItem(item, quantity);
 };

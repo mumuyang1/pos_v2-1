@@ -8,9 +8,10 @@ Cart.prototype.add = function (item, quantity) {
 
     if (existCartItem) {
         existCartItem.quantity += quantity;
-    } else {
-        this.cartItems.push(new CartItem(item, quantity));
+        return;
     }
+
+    this.cartItems.push(new CartItem(item, quantity));
 };
 
 Cart.prototype.get = function (barcode) {
